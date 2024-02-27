@@ -1,89 +1,93 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
-<!--TODO head 태그 있던 자리, header.html 붙히기-->
-<th:block th:replace="~{/layout/header :: headerFrg}"></th:block>
+<th:block th:fragment="base(content)">
 
-<body id="page-top">
+    <!-- TODO : head태그 있던자리, header.html 붙히기 -->
+    <th:block th:replace="~{/layout/header :: headerFrg}"></th:block>
 
-<!-- Page Wrapper -->
-<div id="wrapper">
+    <body id="page-top">
 
-    <!--TODO sidebar 태그 있던 자리, sidebar.html 붙히기-->
-    <th:block th:replace="~{/layout/sidebar :: sidebarFrg}"></th:block>
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
-        <!-- Main Content -->
-        <div id="content">
+        <!-- TODO : Sidebar 있던자리, sidebar.html 붙히기 -->
+        <th:block th:replace="~{/layout/sidebar :: sidebarFrg}"></th:block>
 
-            <!--TODO Topbar : nav 태그 있던 자리, nav.html 붙히기-->
-            <th:block th:replace="~{/layout/nav :: navFrg}"></th:block>
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- Begin Page Content : 실제 내용 -->
+            <!-- Main Content -->
+            <div id="content">
 
-            <div class="container-fluid">
+                <!-- TODO : Topbar의 nav태그 있던자리, nav.html 붙히기  -->
+                <th:block th:replace="~{/layout/nav :: navFrg}"></th:block>
 
-                <!-- 컨텐츠 영역 -->
-                <th:block th:></th:block>
+                <!-- Begin Page Content -->
+
+                <div class="container-fluid">
+
+                    <!-- 컨텐트 영역 -->
+                    <th:block th:replace="${content}"></th:block>
+
+                </div>
+                <!-- /.container-fluid -->
 
             </div>
-            <!-- /.container-fluid -->
+            <!-- End of Main Content -->
+
+            <!-- TODO : Footer 있던 자리, footer.html 붙히기 -->
+            <th:block th:replace="~{/layout/footer :: footerFrg}"></th:block>
 
         </div>
-        <!-- End of Main Content -->
-
-        <!--TODO footer 태그 있던 자리, footer.html 붙히기-->
-        <th:block th:replace="~{/layout/footer :: footerFrg}"></th:block>
+        <!-- End of Content Wrapper -->
 
     </div>
-    <!-- End of Content Wrapper -->
+    <!-- End of Page Wrapper -->
 
-</div>
-<!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script th:src="@{sbadmin/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{sbadmin/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
-<!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script th:src="@{sbadmin/vendor/jquery-easing/jquery.easing.min.js}"></script>
 
-<!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script th:src="@{sbadmin/js/sb-admin-2.min.js}"></script>
 
-<!-- Page level plugins -->
-<script src="vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Page level plugins -->
+    <script th:src="@{sbadmin/vendor/datatables/jquery.dataTables.min.js}"></script>
+    <script th:src="@{sbadmin/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
 
-<!-- Page level custom scripts -->
-<script src="js/demo/datatables-demo.js"></script>
+    <!-- Page level custom scripts -->
+    <script th:src="@{sbadmin/js/demo/datatables-demo.js}"></script>
 
-</body>
+    </body>
 
+</th:block>
 </html>
