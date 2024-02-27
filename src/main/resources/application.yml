@@ -1,0 +1,50 @@
+#DB setting(필수)
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&characterSetResult=UTF-8&useSSL=true
+    username: root
+    password: 1234
+
+  # DB Logging
+  logging:
+    level:
+      org.springframework.jdbc: debug
+      # HTTP request message 로그로 출력
+      org.apache.coyote.http11: debug
+
+# jsesionid url에 붙는 것 삭제
+server:
+  servlet:
+    session:
+      tracking-modes: cookie
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#  #MyBatis setting
+#  mybatis:
+#    configuration:
+#      mapUnderscoreToCamelCase: true
+#    #      mapUnderscoreToCamelCase: true
+#    # mapper에서 Member 클래스의 패카지 경로 생략해서 작성 가능하게 설정에 패키지경로 미리 추가
+#    type-aliases-package : com.mybatis.member.domain
+
+#  # DB Logging
+#  logging:
+#    level:
+#      org.springframework.jdbc: debug
+##      com.mybatis.member.repository: trace
+
+
+#java : productName -> DB : product_name

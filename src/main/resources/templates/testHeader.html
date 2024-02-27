@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <header th:fragment="header">
+        <h4>헤더 조각 입니다.</h4>
+    </header>
+
+    <header th:fragment="headerParam(param1, param2)">
+        <h4>헤더 파라미터 조각 입니다.</h4>
+        <p th:text="${param1}"></p>
+        <p th:text="${param2}"></p>
+    </header>
+
+</body>

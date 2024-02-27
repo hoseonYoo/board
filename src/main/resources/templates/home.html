@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+</head>
+<body>
+    <h3>home</h3>
+    <!--타입리프[데이터가 바뀔 때 사용]-->
+    <button th:onclick="|location.href='@{/boards/list}'|">list</button>
+    <!--html일반[데이터가 안바뀔 때]-->
+    <button onclick="location.href='/boards/add'">add</button>
+</body>
+</html>

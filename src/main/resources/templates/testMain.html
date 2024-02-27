@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>testmain</title>
+</head>
+<body>
+    <h3> insert </h3>
+    <!--  조각 포함 표현식 작성법 : ~{templets폴더 안쪽부터 폴더명+파일명 :: fragment명}  -->
+    <div th:insert="~{testHeader :: header}"></div>
+    <br>
+
+    <h3> replace </h3> <!--단순한경로는 생략해도 나옴 "~{}" replace는 바꿔치기 함-->
+    <div th:replace="testHeader :: header"></div>
+    <br>
+
+    <h3> replace 파라미터 </h3>
+    <!--  파라미터 사용 : 조각에게 데이터를 주고, 조각을 완성해서 가져옴  -->
+    <div th:replace="testHeader :: headerParam('data1', 'data2')"></div>
+    <br>
+
+    <h1> main </h1>
+
+</body>
+</html>
