@@ -5,10 +5,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class BoardRepositoryImpl implements BoardReopsitory{
+public class BoardRepositoryImpl implements BoardRepository {
 
     private final BoardMapper boardMapper;
 
@@ -18,5 +20,19 @@ public class BoardRepositoryImpl implements BoardReopsitory{
         log.info("boardRepository -- save Before : {}", board);
         boardMapper.insert(board);
         log.info("boardRepository -- save After : {}", board);
+    }
+
+    @Override
+    public List<Board> findAllArticles() {
+        // DB에서 게시글 ㅁ두 가져와 service한테 리턴
+        List<Board> list =  boardMapper.selectAll();
+        return list;
+    }
+
+    @Override
+    public Board findOneArticle(Long bid) {
+        //DB에서 가져와서 Service에 리턴
+        Board board = boardMapper.findOne(bid);
+        return board;
     }
 }

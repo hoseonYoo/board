@@ -8,5 +8,12 @@
         insert into board(title, writer, content)
         values(#{title}, #{writer}, #{content})
     </insert>
+    <select id="selectAll" resultType="Board">
+        select * from board order by bid desc
+    </select>
+
+    <select id="findOne" resultType="Board">
+        select * from board where bid=#{bid}
+    </select>
 
 </mapper>

@@ -11,6 +11,7 @@ spring:
       org.springframework.jdbc: debug
       # HTTP request message 로그로 출력
       org.apache.coyote.http11: debug
+      com.mybatis.board.repository: trace
 
 # jsesionid url에 붙는 것 삭제
 server:
@@ -18,7 +19,10 @@ server:
     session:
       tracking-modes: cookie
 
-
+#  #MyBatis setting
+mybatis:
+  # XML에서 Domain의 클래스를 클래스명으로만 사용가능하게, 안해놓으면 패키지명까지 모두 작성해야함.
+  type-aliases-package: com.mybatis.board.domain
 
 
 

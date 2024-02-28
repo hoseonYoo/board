@@ -5,11 +5,11 @@ import com.mybatis.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 // 경로 앞단에 /boards 가 붙는 요청은 여기에
 @Slf4j
@@ -23,8 +23,11 @@ public class BoardController {
 
     //게시글 목록
     @GetMapping("/list") // -> /boards/list와 동일함
-    public String list() {
+    public String list(Model model) {
         log.info("*********BoardController GET /list");
+        // 게시글 목록 가져와 화면에 전달
+        List<Board> list =  boardService.getAllArticles();
+        model.addAttribute("list", list);
         return "board/list";
     }
 
@@ -42,8 +45,21 @@ public class BoardController {
         // 로직 처리 : DB에 저장 // Service 불러서 저장
         boardService.add(board);
         log.info("*********BoardController POST boards/add after {}", board);
-        rttr.addFlashAttribute("result", board.getBid()); // 리다이렉트되는 list 페이지로 생성된 bid 값 물고옴
+        rttr.addFlashAttribute("bid", board.getBid()); // 리다이렉트되는 list 페이지로 생성된 bid 값 물고옴
         return "redirect:/boards/list";
+    }
+
+    //게시글 본문 내용 페이지 요청
+    @GetMapping("/{bid}")
+    public String detail(@PathVariable("bid") Long bid, Model model) {
+        log.info("****boardController get boards/detail - bid {}", bid);
+        // 페이지에 보여줄 내용을 DB에서 가져와 view에 전달
+        // DB에서 가져오기 위해, PK 인 bid를 이용해 가져오자
+        Board board = boardService.getOneArticle(bid);
+        log.info("boardController --- getone -- {}", board);
+        model.addAttribute("board", board);
+        return "board/detail";
+
     }
 
 }
