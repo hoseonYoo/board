@@ -15,7 +15,8 @@ public class BoardRepositoryImpl implements BoardReopsitory{
     @Override
     public void save(Board board) {
         // Mapper에게 저장하는 sql문 실행하라고 명령
-        log.info("boardRepository -- save");
+        log.info("boardRepository -- save Before : {}", board);
         boardMapper.insert(board);
+        log.info("boardRepository -- save After : {}", board);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 // 경로 앞단에 /boards 가 붙는 요청은 여기에
 @Slf4j
@@ -36,10 +37,12 @@ public class BoardController {
 
     //게시글 등록 폼 처리 <form 에서 post 메서드여서 이쪽으로 >
     @PostMapping("/add")
-    public String addPro(Board board) {
-        log.info("*********BoardController POST boards/add {}", board);
+    public String addPro(Board board, RedirectAttributes rttr) {
+        log.info("*********BoardController POST boards/add before {}", board);
         // 로직 처리 : DB에 저장 // Service 불러서 저장
         boardService.add(board);
+        log.info("*********BoardController POST boards/add after {}", board);
+        rttr.addFlashAttribute("result", board.getBid()); // 리다이렉트되는 list 페이지로 생성된 bid 값 물고옴
         return "redirect:/boards/list";
     }
 

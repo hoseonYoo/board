@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mybatis.board.repository.BoardMapper">
-    <insert id="insert">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="bid">
         insert into board(title, writer, content)
         values(#{title}, #{writer}, #{content})
     </insert>
