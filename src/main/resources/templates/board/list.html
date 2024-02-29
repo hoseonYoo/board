@@ -38,6 +38,24 @@
                 </div>
             </div>
         </div>
+
+        <!--페이징 처리-->
+        <nav aria-label="...">
+            <ul class="pagination justify-content-end mb-5">
+                <li class="page-item" th:classappend="${pageDTO.prev == false} ? 'disabled'">
+                    <a class="page-link" th:href="@{/boards/list(page=${pageDTO.startPage-1})}">Previous</a>
+                </li>
+
+                <li th:each="page : ${pageDTO.pageList}" class="page-item" th:classappend="${pageDTO.pager.page == page} ? 'active'">
+                    <a class="page-link" th:href="@{/boards/list(page=${page})}" th:text="${page}">0</a>
+                </li>
+
+                <li class="page-item" th:classappend="${pageDTO.next == false} ? 'disabled'">
+                    <a class="page-link" th:href="@{/boards/list(page=${pageDTO.endPage+1})}">Next</a>
+                </li>
+            </ul>
+        </nav>
+
         <!--모달 추가-->
         <div class="modal" id="myModal" tabindex="-1">
             <div class="modal-dialog">

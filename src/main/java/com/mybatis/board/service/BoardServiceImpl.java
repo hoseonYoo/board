@@ -1,6 +1,7 @@
 package com.mybatis.board.service;
 
 import com.mybatis.board.domain.Board;
+import com.mybatis.board.dto.Pager;
 import com.mybatis.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +31,20 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    public List<Board> getAllArticlesWithPaging(Pager pager) {
+        return boardRepository.getAllArticlesWithPaging(pager);
+
+    }
+
+    @Override
+    public Long getArticleCount() {
+        return boardRepository.getArticleCount();
+    }
+
+    @Override
     public Board getOneArticle(Long bid) {
+        // 조회수 업
+        boardRepository.updateViewCount(bid);
         // DB에서 가져와서 컨트럴러에 리넡ㄴ
         Board board = boardRepository.findOneArticle(bid);
         return board;

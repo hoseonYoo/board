@@ -2,6 +2,7 @@ package com.mybatis.board.service;
 
 
 import com.mybatis.board.domain.Board;
+import com.mybatis.board.dto.Pager;
 
 import java.util.List;
 
@@ -10,6 +11,10 @@ public interface BoardService {
     void add(Board board);
     // 목록 조회 : 전체
     List<Board> getAllArticles();
+    // 글 목록 조회
+    List<Board> getAllArticlesWithPaging(Pager pager);
+
+    Long getArticleCount();
     // 목혹 하나 조회
     Board getOneArticle(Long bid);
     // 글 수정

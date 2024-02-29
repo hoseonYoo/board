@@ -1,6 +1,7 @@
 package com.mybatis.board.repository;
 
 import com.mybatis.board.domain.Board;
+import com.mybatis.board.dto.Pager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -30,10 +31,27 @@ public class BoardRepositoryImpl implements BoardRepository {
     }
 
     @Override
+    public List<Board> getAllArticlesWithPaging(Pager pager) {
+        int offset = (pager.getPage() -1) * pager.getBoardSize();
+        List<Board> list = boardMapper.selectArticlesWithPaging(offset, pager.getBoardSize());
+        return list;
+    }
+
+    @Override
     public Board findOneArticle(Long bid) {
         //DB에서 가져와서 Service에 리턴
         Board board = boardMapper.findOne(bid);
         return board;
+    }
+
+    @Override
+    public Long getArticleCount() {
+        return boardMapper.getArticleCount();
+    }
+
+    @Override
+    public void updateViewCount(Long bid) {
+        boardMapper.updateViewCount(bid);
     }
 
     @Override

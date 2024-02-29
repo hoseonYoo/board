@@ -1,6 +1,8 @@
 package com.mybatis.board.controller;
 
 import com.mybatis.board.domain.Board;
+import com.mybatis.board.dto.PageDTO;
+import com.mybatis.board.dto.Pager;
 import com.mybatis.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,12 +24,16 @@ public class BoardController {
     private final BoardService boardService;
 
     //게시글 목록
-    @GetMapping("/list") // -> /boards/list와 동일함
-    public String list(Model model) {
-        log.info("*********BoardController GET /list");
+    @GetMapping("/list") // -> /boards/list와 동일함 -> 요청 처리
+    public String list(Pager pager, Model model) {
+        log.info("*********BoardController GET /list - pager : {}", pager);
         // 게시글 목록 가져와 화면에 전달
-        List<Board> list =  boardService.getAllArticles();
+//        List<Board> list =  boardService.getAllArticles();
+        List<Board> list = boardService.getAllArticlesWithPaging(pager);
         model.addAttribute("list", list);
+        // DB에서 전체 글의
+        Long articleCount = boardService.getArticleCount();
+        model.addAttribute("pageDTO", new PageDTO(pager, articleCount));
         return "board/list";
     }
 

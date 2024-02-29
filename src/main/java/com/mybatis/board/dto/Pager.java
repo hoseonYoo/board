@@ -8,7 +8,7 @@ public class Pager {
     private int boardSize;  // 한 페이지당 보여줄 글의 개수
     private int pagingSize; // 페이지번호 몇개씩 보여줄지 그 개수
 
-    public Paper() {
+    public Pager() {
         // 디폴트 값 설정
         this(1,10,10);
     }

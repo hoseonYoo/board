@@ -16,6 +16,19 @@
         select * from board where bid=#{bid}
     </select>
 
+    <select id="selectArticlesWithPaging" resultType="Board">
+        select * from board order by bid desc
+        limit #{offset}, #{size}
+    </select>
+
+    <select id="getArticleCount" resultType="Long">
+        select count(*) from board
+    </select>
+
+    <update id="updateViewCount">
+        update board set count=count+1 where bid=#{bid}
+    </update>
+
     <update id="update">
         update board set title=#{title}, content=#{content}
         where bid=#{bid}
