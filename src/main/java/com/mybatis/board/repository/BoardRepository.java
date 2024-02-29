@@ -11,4 +11,8 @@ public interface BoardRepository {
     List<Board> findAllArticles();
     //게시글 한개 조회
     Board findOneArticle(Long bid);
+    //게시글 수정
+    boolean updateArticle(Board board);
+    //게시글 삭제
+    void deleteArticle(Long bid);
 }

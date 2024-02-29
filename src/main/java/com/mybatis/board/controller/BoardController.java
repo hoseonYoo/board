@@ -59,7 +59,37 @@ public class BoardController {
         log.info("boardController --- getone -- {}", board);
         model.addAttribute("board", board);
         return "board/detail";
+    }
 
+    // 글 수정 폼 요청
+    @GetMapping("/{bid}/modify")
+    public String modifyForm(@PathVariable("bid") Long bid, Model model) {
+        log.info("boardController --- modify -- bid -- {}", bid);
+        Board board = boardService.getOneArticle(bid);
+        log.info("boardController --- modify -- bid -- {}", board);
+        model.addAttribute("board", board);
+        return "board/modify";
+    }
+
+    // 글 수정 처리 요청
+    @PostMapping("/{bid}/modify") // @PathVariable("bid")Long bid <- 포스트 맵핑뒤에 있는 주소에서 꺼내는 것
+    public String modifyPro(@PathVariable("bid")Long bid, Board board, RedirectAttributes rttr){
+        log.info("boardController --- modify -- bid -- {}", bid);
+        log.info("boardController --- modify -- board -- {}", board);
+        boolean result = boardService.modifyArticle(board);
+
+        if(result){
+            rttr.addFlashAttribute("result", board.getBid());
+        }
+        return "redirect:/boards/{bid}";
+    }
+
+    // 글 삭제
+    @PostMapping("/{bid}/delete")
+    public String delete(@PathVariable("bid")Long bid) {
+        log.info("**** BoardController POST/delete -- bid{}", bid);
+        boardService.removeArticle(bid);
+        return "redirect:/boards/list";
     }
 
 }

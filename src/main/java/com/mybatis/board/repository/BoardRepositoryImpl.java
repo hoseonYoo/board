@@ -25,7 +25,7 @@ public class BoardRepositoryImpl implements BoardRepository {
     @Override
     public List<Board> findAllArticles() {
         // DB에서 게시글 ㅁ두 가져와 service한테 리턴
-        List<Board> list =  boardMapper.selectAll();
+        List<Board> list = boardMapper.selectAll();
         return list;
     }
 
@@ -35,4 +35,23 @@ public class BoardRepositoryImpl implements BoardRepository {
         Board board = boardMapper.findOne(bid);
         return board;
     }
+
+    @Override
+    public boolean updateArticle(Board board) {
+        log.info("**** BoardRepository modifyArticle");
+        int updateCount = boardMapper.update(board);
+        log.info("**** BoardRepository modifyArticle -- result {}", updateCount);
+        if(updateCount > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void deleteArticle(Long bid) {
+        int result = boardMapper.delete(bid);
+        log.info("****BoardRepository delete -- result : {}", result);
+    }
+
+
 }

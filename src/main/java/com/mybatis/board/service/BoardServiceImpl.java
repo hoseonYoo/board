@@ -35,5 +35,17 @@ public class BoardServiceImpl implements BoardService{
         Board board = boardRepository.findOneArticle(bid);
         return board;
     }
+
+    @Override
+    public boolean modifyArticle(Board board) {
+        log.info("**** BoardService modifyArticle");
+        boolean result = boardRepository.updateArticle(board);
+        return result;
+    }
+
+    @Override
+    public void removeArticle(Long bid) {
+        boardRepository.deleteArticle(bid);
+    }
 }
 

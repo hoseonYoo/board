@@ -12,4 +12,8 @@ public interface BoardService {
     List<Board> getAllArticles();
     // 목혹 하나 조회
     Board getOneArticle(Long bid);
+    // 글 수정
+    boolean modifyArticle(Board board);
+    // 글 삭제
+    void removeArticle(Long bid);
 }

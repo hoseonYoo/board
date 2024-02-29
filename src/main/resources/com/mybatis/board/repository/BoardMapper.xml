@@ -16,4 +16,12 @@
         select * from board where bid=#{bid}
     </select>
 
+    <update id="update">
+        update board set title=#{title}, content=#{content}
+        where bid=#{bid}
+    </update>
+
+    <delete id="delete">
+        delete from board where bid=#{bid}
+    </delete>
 </mapper>

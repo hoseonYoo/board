@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/base :: base(~{this::content})}">
+
+    <th:block th:fragment="content">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Board Detail</h1>
+        <p class="mb-4">게시글 수정 페이지</p>
+
+        <!-- Card -->
+        <div class="card shadow mb-5">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Board Modify</h6>
+            </div>
+            <div class="card-body">
+                <form action="" th:action th:object="${board}" method="post">
+                    <div class="form-group">
+                        <label for="bid">Bid</label>
+                        <input type="text" class="form-control" th:field="*{bid}" id="bid" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" th:field="*{title}" id="title" >
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Content</label>
+                        <textarea class="form-control" th:field="*{content}" id="content" rows="3" ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="writer">Writer</label>
+                        <input type="text" class="form-control" th:field="*{writer}" id="writer" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="createDate">Create Date</label>
+                        <input type="text" class="form-control" th:field="*{createDate}" id="createDate" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="count">Viewed</label>
+                        <input type="text" class="form-control" th:field="*{count}" id="count" readonly>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-warning" th:onclick="history.go(-1)">Cancel</button>
+                    <button type="button" class="btn btn-info" th:onclick="|location.href='@{/boards/list}'|">List</button>
+                </form>
+                <hr>
+                <div class="text-center">
+                    <a class="small" href="#">Already have an account? Login!</a>
+                </div>
+            </div>
+        </div>
+
+    </th:block>
+
+</th:block>
+</html>
