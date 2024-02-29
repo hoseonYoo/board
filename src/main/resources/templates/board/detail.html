@@ -38,9 +38,11 @@
                         <label for="count">Viewed</label>
                         <input type="text" class="form-control" th:field="${board.count}" id="count" readonly>
                     </div>
-                    <button type="button" class="btn btn-primary">Modify</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
-                    <button type="button" class="btn btn-info">List</button>
+                    <button type="button" class="btn btn-primary" th:onclick="|location.href='@{/boards/{bid}/modify(bid=${board.bid})}'|">Modify</button>
+                    <form action="" th:action="@{/boards/{bid}/delete(bid=${board.bid})}" method="post">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    <button type="button" class="btn btn-info" th:onclick="|location.href='@{/boards/list}'|">List</button>
 
                 <hr>
                 <div class="text-center">

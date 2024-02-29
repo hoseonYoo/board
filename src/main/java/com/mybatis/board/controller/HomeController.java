@@ -13,7 +13,7 @@ public class HomeController {
     @RequestMapping("/") //...8080
     public String home(){
         log.info("home");
-       return "home";
+       return "redirect:/boards/list";
     }
 
     @GetMapping("/testMain")
